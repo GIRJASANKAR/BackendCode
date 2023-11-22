@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express();
 app.use(express.json());
-const port = 3000
+app.use(express.urlencoded({extended:false}));
+const port = 3000;
 
 // Global Middleware going to add more with frontend
 app.use((req, res, next) => {
@@ -16,8 +17,7 @@ app.get('/', (req, res) => {
 
 app.post('/api', (req, res) => {
     try {
-      const { name, email } = req.body;
-      res.json({ message: `Data received and processed successfully ${name} ${email}` });
+      res.json({ message: `Data received and processed successfully ${req.body.hi}` });
     } catch (error) {
       console.error('Error:', error);
       res.status(500).json({ message: 'Internal Server Error' });
