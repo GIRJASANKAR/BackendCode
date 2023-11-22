@@ -7,8 +7,16 @@ const fs=require('fs');
 fs.writeFile('myfile.txt','SAY MY NAME' , (e)=>{
   if(e){
     console.log('Cannot able to write');
+    return;
   }
 })
+
+
+fs.readFile('myfile.txt','utf8',(e,d)=>{
+   if(e) return;
+   console.log(d);
+})
+
 
 
 app.use(express.json());
