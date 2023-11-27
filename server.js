@@ -26,8 +26,6 @@ fs.unlink('myfile.txt',(e)=>{
   console.log("deleted");
 })
 
-
-
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use((req, res, next) => {
