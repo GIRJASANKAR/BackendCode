@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express();
 const port = 3000;
+
+// there are thousand of package in node as well as custom middlewares you ca use.
 // const fs=require('fs');
 
 
@@ -47,7 +49,7 @@ app.post('/api', (req, res) => {
   try {
     let counterheader = req.header.counter;
     let counterquery = req.params.counter;
-    
+
     res.json({ message: `Data received and processed successfully ${req.body.hi}` });
   } catch (error) {
     console.error('Error:', error);
