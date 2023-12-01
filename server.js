@@ -28,6 +28,7 @@ const port = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+
 app.use((req, res, next) => {
     console.log('Middleware Log:', new Date(), req.method, req.url);
     next();
@@ -42,6 +43,8 @@ app.get('/', (req, res) => {
 
 app.post('/api', (req, res) => {
     try {
+      let counterheader= req.header.counter;
+      let counterquery=req.params.counter;
       res.json({ message: `Data received and processed successfully ${req.body.hi}` });
     } catch (error) {
       console.error('Error:', error);
