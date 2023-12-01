@@ -42,6 +42,14 @@ app.use((req, res, next) => {
 
 });
 
+
+let calculateSum=(counter)=>{
+  let sum=0;
+  for(let i=0;i<counter;i++){
+    sum+=i;
+  }
+}
+
 app.get('/calculate', (req, res) => {
   let counterheader = req.header.counter;
   let counterquery = req.params.counter;
