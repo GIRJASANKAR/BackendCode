@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express();
 const port = 3000;
-const fs=require('fs');
+// const fs=require('fs');
 
 
 // fs.writeFile('myfile.txt','SAY MY NAME' , (e)=>{
