@@ -42,14 +42,16 @@ app.use((req, res, next) => {
 
 });
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+app.get('/calculate', (req, res) => {
+  let counterheader = req.header.counter;
+  let counterquery = req.params.counter;
+  let ans= calculateSum(counterquery);
+  res.send(`the sum is ${ans}`);
 })
 
 app.post('/api', (req, res) => {
   try {
-    let counterheader = req.header.counter;
-    let counterquery = req.params.counter;
+ 
 
     res.json({ message: `Data received and processed successfully ${req.body.hi}` });
   } catch (error) {
@@ -57,8 +59,6 @@ app.post('/api', (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
-
-
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
