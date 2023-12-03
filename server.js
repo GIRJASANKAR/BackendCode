@@ -4,7 +4,7 @@ const port = 3000;
 
 // there are thousand of package in node as well as custom middlewares you ca use.
 
-// const fs=require('fs');
+// const fs=require('fs');  // in built packages
 
 
 // fs.writeFile('myfile.txt','SAY MY NAME' , (e)=>{
@@ -59,14 +59,14 @@ app.get('/calculate', (req, res) => {
 
 app.post('/api', (req, res) => {
   try {
- 
-
     res.json({ message: `Data received and processed successfully ${req.body.hi}` });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
