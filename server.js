@@ -53,6 +53,7 @@ let calculateSum=(counter)=>{
 app.get('/calculate', (req, res) => {
   let counterheader = req.header.counter;  // get your custom header
   let counterquery = req.params.counter;    // get your custom query param
+  let counter= req.body.counter;  // body
   let ans= calculateSum(counterquery);
   res.send(`the sum is ${ans}`);
 })
