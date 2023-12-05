@@ -62,7 +62,7 @@ app.get('/calculate', (req, res) => {
 
 
 app.get('/', (req, res) => {
-// res.status(200).send("something") -- calling this type of function phenomenom is called function currying
+  // res.status(200).send("something") -- calling this type of function phenomenom is called function currying one function after other
   res.status(211).send(`the sum is ${ans}`);  // sending status code 
 })
 
