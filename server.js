@@ -102,6 +102,12 @@ res.send(
 
 
 
+app.get('hi',(req,res)=>{
+res.send("<html><body>hello World</body></html>") // you can write all your html in double quotes itself.
+})
+
+
+
 
 app.post('/api', (req, res) => {
   try {
