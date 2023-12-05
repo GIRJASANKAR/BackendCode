@@ -30,8 +30,9 @@ const bodyParser= require("body-parser");
 //   console.log("deleted");
 // })
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));   // to accept form like data 
 
 app.use((req, res, next) => {
   console.log('Middleware Log:', new Date(), req.method, req.url);
