@@ -107,6 +107,11 @@ res.send("<html><body>hello World</body></html>") // you can write all your html
 })
 
 
+app.get('sendfile',(req,res)=>{
+  res.sendFile("index") // directlty send file
+  })
+  
+
 
 
 app.post('/api', (req, res) => {
