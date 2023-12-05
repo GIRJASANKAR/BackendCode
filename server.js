@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express();
 const port = 3000;
+const bodyParser= require("body-parser");
 
 // there are thousand of package in node as well as custom middlewares you ca use.
 
