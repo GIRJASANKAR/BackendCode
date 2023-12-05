@@ -68,6 +68,17 @@ app.get('/', (req, res) => {
 
 // the difference between res.send() and res.json() this make sure you only send json objects.
 
+app.get('/myfile',(req,res)=>{
+  let counter=req.body.header
+  let counter2= req.params.query
+   let obj={
+    a:counter,
+    b:counter2
+   }
+res.status(278).json(obj);    // make sure it's json
+
+})
+
 
 app.post('/api', (req, res) => {
   try {
