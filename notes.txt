@@ -1,0 +1,24 @@
+Backend 
+
+HTTP Servers, Authentication, Databases, Middlewares
+
+
+Http Servers -->  HOW to communicate
+
+
+1- Request Methods  - get,post put, patch 
+2- URL, PORT,  routes -    /api, /hello , /a/:id
+3- Query params, Headers, body     - headers.set, get, params.get, url,queryparams modules
+4- status codes- 200 -    sucess, 400- client side error, 500 - server side error 
+5- Responce -  HTML, JSON, Test
+6- CORS
+
+bodyParser= require(body-parser) then 
+app.use(bodyParser.json())
+
+
+Servers can talk to servers that is
+1- browsers can talk to http servers
+2- postman can talk to http servers
+3- Node.js process can talk to http servers and that http server can also be a node js process  for example create second fileand use one extra libery that is called   Fetch
+ 
