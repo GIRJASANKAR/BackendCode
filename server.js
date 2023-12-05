@@ -66,6 +66,7 @@ app.get('/', (req, res) => {
   res.status(211).send(`the sum is ${ans}`);  // sending status code 
 })
 
+// the difference between res.send() and res.json() this make sure you only send json objects.
 
 
 app.post('/api', (req, res) => {
