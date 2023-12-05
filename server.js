@@ -108,7 +108,7 @@ res.send("<html><body>hello World</body></html>") // you can write all your html
 
 
 app.get('sendfile',(req,res)=>{
-  res.sendFile("./index") // directlty send file
+  res.sendFile(__dirname+"/index") // directlty send file
   })
   
 
