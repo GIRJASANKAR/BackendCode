@@ -12,6 +12,6 @@ let methodObj={
 }
 
 function callbackFn(result){
-  console.log(result);
+   result.json()     //. to extract the body you need to call result.json()
 }
 fetch("localhost:3000/calculateSum",methodObj).then(callbackFn)
