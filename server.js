@@ -68,7 +68,7 @@ app.get('/', (req, res) => {
 
 // the difference between res.send() and res.json() this make sure you only send json objects.
 
-app.get('/myfile',(req,res)=>{
+app.get('/jsondata',(req,res)=>{
   let counter=req.body.header
   let counter2= req.params.query
    let obj={
@@ -76,8 +76,31 @@ app.get('/myfile',(req,res)=>{
     b:counter2
    }
 res.status(278).json(obj);    // make sure it's json
-
 })
+app.get('/rendersome',(req,res)=>{
+
+res.send(
+  `<div
+  tabindex="0"
+  class="mb-4 py-6 px-4 shadow-md flex items-center justify-between rounded-xl border border-transparent transition-all ease-in duration-200 cursor-pointer"
+  [ngClass]="{ 'border-primary shadow-inner': selected }"
+>
+  <div class="flex items-center">
+    <div class="navigation-icon w-6 h-6 mr-2">
+      <img [src]="img" alt="icon" />
+    </div>
+    <div>
+      <div class="font-semibold text-sm pb-1"><ng-content></ng-content></div>
+      <div class="text-xxs">Regular settlement (T+2 Days)</div>
+    </div>
+  </div>
+  <div class="font-semibold text-sm">{{ balance | ngsCurrency }}</div>
+</div>
+  `
+);
+})
+
+
 
 
 app.post('/api', (req, res) => {
