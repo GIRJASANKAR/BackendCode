@@ -3,12 +3,12 @@
 // Server can talk to server
 
 fetch("localhost:3000",{
-    method:"Post"
+    method:"POST"
 }).then((result)=>console.log(result));
 
 
 let methodObj={
-    method:"Post"
+    method:"GET"
 }
 
 function callbackFn(result){
