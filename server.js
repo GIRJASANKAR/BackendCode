@@ -4,10 +4,9 @@ const port = 3000;
 const bodyParser = require("body-parser");
 app.use(express.json());
 
-// there are thousand of package in node as well as custom middlewares you can use.
-
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // to accept form like data
+app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   console.log("Middleware Log:", new Date(), req.method, req.url);
@@ -19,79 +18,66 @@ app.use((req, res, next) => {
   }
 });
 
-let calculateSum = (counter) => {
-  let sum = 0;
-  for (let i = 0; i <= counter; i++) {
-    sum += i;
+let ADMINS = [];
+let USERS = [];
+let COURSES = [];
+
+// Admin routes
+
+app.post("/admin/signup", (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  const foundUser = ADMINS.find((user) => user.username === username);
+  if (foundUser) res.json("Admin already exists");
+  else {
+    const data = {
+      username,
+      password,
+    };
+    ADMINS.push(data);
+    // console.log(ADMINS);
+    res.json("Admin created successfully");
   }
-  return sum;
-};
-
-app.get("/calculate", (req, res) => {
-  // let counterheader = req.header.counter;  // get your custom header
-  let counterquery = req.query.x; // get your custom query param
-  console.log("eq.query.counter", req.query.counter);
-  // let counter= req.body.counter;  // to parse and use body you need to use middleware
-  let ans = calculateSum(counterquery);
-  res.send(`the sum is ${ans}`);
 });
 
-app.get("/", (req, res) => {
-  // res.status(200).send("something") -- calling this type of function phenomenom is called function currying one function after other
-  res.status(211).send(`Welcome page`); // sending status code
+app.post("/admin/login", (req, res) => {
+  // logic to log in admin
+conso
+
 });
 
-// the difference between res.send() and res.json() this make sure you only send json objects.
-
-app.get("/jsondata", (req, res) => {
-  let counter = req.query.counter;
-  let counter2 = req.query.counter2;
-  let obj = {
-    a: counter,
-    b: counter2,
-  };
-  res.status(278).json(obj); // make sure it's json
+app.post("/admin/courses", (req, res) => {
+  // logic to create a course
 });
 
-app.get("/rendersome", (req, res) => {
-  res.send(
-    `<div
-  tabindex="0"
-  class="mb-4 py-6 px-4 shadow-md flex items-center justify-between rounded-xl border border-transparent transition-all ease-in duration-200 cursor-pointer"
-  [ngClass]="{ 'border-primary shadow-inner': selected }"
->
-  <div class="flex items-center">
-    <div class="navigation-icon w-6 h-6 mr-2">
-      <img [src]="img" alt="icon" />
-    </div>
-    <div>
-      <div class="font-semibold text-sm pb-1"><ng-content></ng-content></div>
-      <div class="text-xxs">Regular settlement (T+2 Days)</div>
-    </div>
-  </div>
-  <div class="font-semibold text-sm">{{ balance | ngsCurrency }}</div>
-</div>
-  `
-  );
+app.put("/admin/courses/:courseId", (req, res) => {
+  // logic to edit a course
 });
 
-app.get("/hi", (req, res) => {
-  res.send("<html><body>hello World</body></html>"); // you can write all your html in double quotes itself.
+app.get("/admin/courses", (req, res) => {
+  // logic to get all courses
 });
 
-app.get("/sendfile", (req, res) => {
-  res.sendFile(__dirname + "/index.html"); // directlty send file
+// User routes
+app.post("/users/signup", (req, res) => {
+  // logic to sign up user
 });
 
-app.post("/api", (req, res) => {
-  try {
-    res.json({
-      message: `Data received and processed successfully ${req.body.hi}`,
-    });
-  } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
+app.post("/users/login", (req, res) => {
+  // logic to log in user
+});
+
+app.get("/users/courses", (req, res) => {
+  // logic to list all courses
+});
+
+app.post("/users/courses/:courseId", (req, res) => {
+  // logic to purchase a course
+});
+
+app.get("/users/purchasedCourses", (req, res) => {
+  // logic to view purchased courses
 });
 
 app.listen(port, () => {
