@@ -96,3 +96,7 @@ app.post("/api", (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+// going to modify this server file and create to-do app 
+// first simple to-do app with global variable
+// then using fs module save all the data in a file 
+// then build a simple frontend for this then do  all this.
