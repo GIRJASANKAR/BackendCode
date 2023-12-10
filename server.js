@@ -43,7 +43,21 @@ app.post("/admin/signup", (req, res) => {
 
 app.post("/admin/login", (req, res) => {
   // logic to log in admin
-conso
+ const username=req.headers.username
+ const password=req.headers.password
+const foundUser = ADMINS.find((user) => user.username === username && user.password===password);
+
+if(foundUser) res.json({message: 'Logged in successfully'});
+else{
+  res.json({message: 'Usern'});
+}
+
+
+
+
+
+
+
 
 });
 
