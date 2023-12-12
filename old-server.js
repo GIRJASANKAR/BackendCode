@@ -86,3 +86,7 @@ app.get("/admin/courses", (req, res) => {});
 app.get("/hi", (req, res) => {
   res.send("<html><body>hello World</body></html>"); // you can write all your html in double quotes itself.
 });
+
+
+
+// transfer server code to old-server-file

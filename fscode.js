@@ -21,3 +21,5 @@ fs.unlink('myfile.txt',(e)=>{
   if (e) return;
   console.log("deleted");
 })
+
+// mehods of file system module
