@@ -103,3 +103,5 @@ app.listen(port, () => {
 //mongod database 
 
 // Read about monorepo, docker , images, containers, how to pull images from docker
+// two files docker file, compose file . ship whole container from one place to another
+// need of kafka - send loaction on every second . publish and subscribe
