@@ -106,3 +106,5 @@ app.listen(port, () => {
 // two files docker file, compose file . ship whole container from one place to another
 // need of kafka - send loaction on every second . publish and subscribe torant is very fast.
 // can't able to do on dabases . it is not possible to read and write at so much pace then send this to user.
+
+// Aws
