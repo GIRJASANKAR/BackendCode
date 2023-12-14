@@ -112,3 +112,4 @@ app.listen(port, () => {
 // kafka
 // docker
 // kubernates
+// sql
