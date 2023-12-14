@@ -101,3 +101,5 @@ app.listen(port, () => {
 // then build a simple frontend for this then do  all this.
 
 //mongod database 
+
+// Read about monorepo, docker , images, containers, how to pull images from docker
