@@ -52,8 +52,6 @@ else{
   res.json({message: 'Usern'});
 }
 
-
-
 });
 
 app.post("/admin/courses", (req, res) => {
