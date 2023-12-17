@@ -54,11 +54,6 @@ else{
 
 
 
-
-
-
-
-
 });
 
 app.post("/admin/courses", (req, res) => {
