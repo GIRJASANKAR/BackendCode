@@ -4,7 +4,6 @@ const port = 3000;
 const bodyParser = require("body-parser");
 app.use(express.json());
 
-app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // to accept form like data
 app.use(bodyParser.json());
 
@@ -53,6 +52,11 @@ app.post("/admin/login", (req, res) => {
   else {
     res.json({ message: "Usern" });
   }
+
+  if (foundUser) res.json({ message: "Logged in successfully" });
+  else {
+    res.json({ message: "Usern" });
+  }
 });
 
 app.post("/admin/courses", (req, res) => {
@@ -87,7 +91,30 @@ app.get("/users/purchasedCourses", (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
 // going to modify this server file and create to-do app
 // first simple to-do app with global variable
 // then using fs module save all the data in a file
 // then build a simple frontend for this then do  all this.
+
+//mongod database
+
+// Read about monorepo, docker , images, containers, how to pull images from docker
+// two files docker file, compose file . ship whole container from one place to another
+// need of kafka - send loaction on every second . publish and subscribe torant is very fast.
+// can't able to do on dabases . it is not possible to read and write at so much pace then send this to user.
+
+// Aws
+// redis
+// kafka
+// docker
+// kubernates
+// sql
+// monorepo
+// graph ql
+// system design
+// jenkins
+// node
+// mongodb
+// react
+// assingment of harkirat , epic react app (projects)
