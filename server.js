@@ -43,22 +43,16 @@ app.post("/admin/signup", (req, res) => {
 
 app.post("/admin/login", (req, res) => {
   // logic to log in admin
- const username=req.headers.username
- const password=req.headers.password
-const foundUser = ADMINS.find((user) => user.username === username && user.password===password);
+  const username = req.headers.username;
+  const password = req.headers.password;
+  const foundUser = ADMINS.find(
+    (user) => user.username === username && user.password === password
+  );
 
-if(foundUser) res.json({message: 'Logged in successfully'});
-else{
-  res.json({message: 'Usern'});
-}
-
-
-
-
-
-
-
-
+  if (foundUser) res.json({ message: "Logged in successfully" });
+  else {
+    res.json({ message: "Usern" });
+  }
 });
 
 app.post("/admin/courses", (req, res) => {
@@ -68,7 +62,6 @@ app.post("/admin/courses", (req, res) => {
 app.put("/admin/courses/:courseId", (req, res) => {
   // logic to edit a course
 });
-
 
 // User routes
 app.post("/users/signup", (req, res) => {
@@ -94,7 +87,7 @@ app.get("/users/purchasedCourses", (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
-// going to modify this server file and create to-do app 
+// going to modify this server file and create to-do app
 // first simple to-do app with global variable
-// then using fs module save all the data in a file 
+// then using fs module save all the data in a file
 // then build a simple frontend for this then do  all this.
