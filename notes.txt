@@ -20,5 +20,5 @@ app.use(bodyParser.json())
 Servers can talk to servers that is
 1- browsers can talk to http servers
 2- postman can talk to http servers
-3- Node.js process can talk to http servers and that http server can also be a node js process  for example create second fileand use one extra libery that is called   Fetch
+3- Node.js process can talk to http servers and that http server can also be a node js processfor example create second fileand use one extra libery that is called Fetch
  
