@@ -62,11 +62,12 @@ app.post("/admin/signup", (req, res) => {
 });
 
 app.post("/admin/login", checklogin, (req, res) => {
-  // logic to log in admin
+  // middleware will take this
 });
 
 app.post("/admin/courses",checklogin, (req, res) => {
 // checking admin is login or not with middleware in this route
+
    
 });
 
