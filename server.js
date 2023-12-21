@@ -44,8 +44,9 @@ let ADMINS = [];
 let USERS = [];
 let COURSES = [];
 
-// Admin routes
+let courseId=0;
 
+// Admin routes
 app.post("/admin/signup", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
