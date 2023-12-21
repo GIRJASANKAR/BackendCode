@@ -27,7 +27,7 @@ function checklogin(req,res,next){
     (user) => user.username === username && user.password === password
   );
   if(foundUser){
-    res.json({ message: "Logged in successfully" });
+    next();
   }else{
     res.json({ message: "Username or password is incorrect" });
   }
@@ -66,6 +66,7 @@ app.post("/admin/signup", (req, res) => {
 
 app.post("/admin/login", checklogin, (req, res) => {
   // middleware will take this
+  res.json("Logged in successfully")
 });
 
 app.post("/admin/courses",checklogin, (req, res) => {
@@ -77,8 +78,8 @@ const creating_course={
   imageLink:req.body.imageLink,
   published:req.body.published,
 }
-mySchema.safeParse("tuna"); 
 
+res.json(courseSchema.safeParse(creating_course));
    
 });
 
