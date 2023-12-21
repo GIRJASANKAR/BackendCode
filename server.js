@@ -73,32 +73,32 @@ app.post('/admin/login', (req, res) => {
   res.send("hello world");
 });
 
-// app.post("/admin/courses", checklogin, (req, res) => {
-//   // checking admin is login or not with middleware in this route
-//   const creating_course = {
-//     title: req.body.title,
-//     description: req.body.description,
-//     price: req.body.price,
-//     imageLink: req.body.imageLink,
-//     published: req.body.published,
-//   };
-//   let result = courseSchema.safeParse(creating_course);
-//   if (!result.success) {
-//     res.json({
-//       ...result,
-//       message: "course is not created",
-//     });
-//   } else {
-//     courseId++;
-//     COURSES.push({ ...creating_course, courseId });
-//     res.json({
-//       ...result,
-//       message: "Course created successfully",
-//       courseId: courseId,
-//     });
-//   }
-//   console.log(COURSES);
-// });
+app.post("/admin/courses", checklogin, (req, res) => {
+  // checking admin is login or not with middleware in this route
+  const creating_course = {
+    title: req.body.title,
+    description: req.body.description,
+    price: req.body.price,
+    imageLink: req.body.imageLink,
+    published: req.body.published,
+  };
+  let result = courseSchema.safeParse(creating_course);
+  if (!result.success) {
+    res.json({
+      ...result,
+      message: "course is not created",
+    });
+  } else {
+    courseId++;
+    COURSES.push({ ...creating_course, courseId });
+    res.json({
+      ...result,
+      message: "Course created successfully",
+      courseId: courseId,
+    });
+  }
+  console.log(COURSES);
+});
 
 app.put("/admin/courses/:courseId", (req, res) => {
   // logic to edit a course
