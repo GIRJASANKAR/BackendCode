@@ -28,16 +28,14 @@ app.post("/admin/signup", (req, res) => {
   const password = req.body.password;
 
   const foundUser = ADMINS.find((user) => user.username === username);
-  if (foundUser) res.json("Admin already exists");
-  else {
-    const data = {
-      username,
-      password,
-    };
-    ADMINS.push(data);
-    // console.log(ADMINS);
+  if (foundUser) {
+    res.json("Admin already exists");
+  }else{
+    console.log(ADMINS);
     res.json("Admin created successfully");
   }
+  ADMINS.push({ username, password });
+
 });
 
 app.post("/admin/login", (req, res) => {
@@ -91,5 +89,3 @@ app.get("/users/purchasedCourses", (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
-
-
