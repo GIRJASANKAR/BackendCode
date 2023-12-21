@@ -22,13 +22,16 @@ const courseSchema = z.object({
 function checklogin(req, res, next) {
   const username = req.headers.username;
   const password = req.headers.password;
+  if(username===undefined || password===undefined){
+    res.json({error: "please provide username & password in headers"});
+    return;
+  }
   const foundUser = ADMINS.find(
     (user) => user.username === username && user.password === password
   );
   if (foundUser) {
    console.log("user exists")
-   res.json({ message: "Logged in sucessfully" });
-    // next();
+     next();
   } else {
     res.json({ message: "Username or password is incorrect" });
   }
@@ -65,37 +68,37 @@ app.post("/admin/signup", (req, res) => {
   console.log(ADMINS);
 });
 
-app.post("/admin/login", checklogin, (req, res) => {
+app.post('/admin/login', (req, res) => {
   // middleware will take this
-  res.send("Logged in successfully");
+  res.send("hello world");
 });
 
-app.post("/admin/courses", checklogin, (req, res) => {
-  // checking admin is login or not with middleware in this route
-  const creating_course = {
-    title: req.body.title,
-    description: req.body.description,
-    price: req.body.price,
-    imageLink: req.body.imageLink,
-    published: req.body.published,
-  };
-  let result = courseSchema.safeParse(creating_course);
-  if (!result.success) {
-    res.json({
-      ...result,
-      message: "course is not created",
-    });
-  } else {
-    courseId++;
-    COURSES.push({ ...creating_course, courseId });
-    res.json({
-      ...result,
-      message: "Course created successfully",
-      courseId: courseId,
-    });
-  }
-  console.log(COURSES);
-});
+// app.post("/admin/courses", checklogin, (req, res) => {
+//   // checking admin is login or not with middleware in this route
+//   const creating_course = {
+//     title: req.body.title,
+//     description: req.body.description,
+//     price: req.body.price,
+//     imageLink: req.body.imageLink,
+//     published: req.body.published,
+//   };
+//   let result = courseSchema.safeParse(creating_course);
+//   if (!result.success) {
+//     res.json({
+//       ...result,
+//       message: "course is not created",
+//     });
+//   } else {
+//     courseId++;
+//     COURSES.push({ ...creating_course, courseId });
+//     res.json({
+//       ...result,
+//       message: "Course created successfully",
+//       courseId: courseId,
+//     });
+//   }
+//   console.log(COURSES);
+// });
 
 app.put("/admin/courses/:courseId", (req, res) => {
   // logic to edit a course
