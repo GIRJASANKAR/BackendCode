@@ -67,7 +67,13 @@ app.post("/admin/login", checklogin, (req, res) => {
 
 app.post("/admin/courses",checklogin, (req, res) => {
 // checking admin is login or not with middleware in this route
-
+const creating_course={
+  title:req.body.title,
+  description:req.body.description,
+  price:req.body.price,
+  imageLink:req.body.imageLink,
+  published:req.body.published,
+}
    
 });
 
