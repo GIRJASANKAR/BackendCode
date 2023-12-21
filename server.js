@@ -78,9 +78,21 @@ const creating_course={
   imageLink:req.body.imageLink,
   published:req.body.published,
 }
-
-res.json(courseSchema.safeParse(creating_course));
-   
+let result=courseSchema.safeParse(creating_course)
+if(!result.success){
+ res.json({
+  ...result,
+  message:"course is not created",
+ })
+}
+else{
+courseId++;
+res.json({
+  ...result,
+  message:"Course created successfully",
+  courseId: courseId
+})
+}  
 });
 
 app.put("/admin/courses/:courseId", (req, res) => {
