@@ -1,4 +1,5 @@
 const express = require("express");
+const z= require("zod");
 const app = express();
 const port = 3000;
 const bodyParser = require("body-parser");
@@ -6,6 +7,15 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: false })); // to accept form like data
 app.use(bodyParser.json());
+
+
+const course = z.object({
+  title: z.string(),
+  description: z.string(),
+  price: z.number(),
+  imageLink: z.string(),
+  published: z.boolean(),
+});
 
 function checklogin(req,res,next){
   const username = req.headers.username;
