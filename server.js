@@ -55,7 +55,7 @@ app.post("/admin/login", checklogin, (req, res) => {
 });
 
 app.post("/admin/courses",checklogin, (req, res) => {
-  // logic to create a course
+// checking admin is login or not with middleware in this route
 });
 
 app.put("/admin/courses/:courseId", (req, res) => {
