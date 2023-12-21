@@ -26,6 +26,7 @@ function checklogin(req, res, next) {
     (user) => user.username === username && user.password === password
   );
   if (foundUser) {
+   console.log("user exists")
     next();
   } else {
     res.json({ message: "Username or password is incorrect" });
@@ -65,8 +66,7 @@ app.post("/admin/signup", (req, res) => {
 
 app.post("/admin/login", checklogin, (req, res) => {
   // middleware will take this
-  
-  res.json("Logged in successfully");
+  res.send("Logged in successfully");
 });
 
 app.post("/admin/courses", checklogin, (req, res) => {
@@ -86,14 +86,14 @@ app.post("/admin/courses", checklogin, (req, res) => {
     });
   } else {
     courseId++;
-    COURSES.push({...creating_course,courseId});
+    COURSES.push({ ...creating_course, courseId });
     res.json({
       ...result,
       message: "Course created successfully",
       courseId: courseId,
     });
   }
-console.log(COURSES);
+  console.log(COURSES);
 });
 
 app.put("/admin/courses/:courseId", (req, res) => {
