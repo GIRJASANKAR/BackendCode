@@ -7,6 +7,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // to accept form like data
 app.use(bodyParser.json());
 
+function checklogin(req,res,next){
+  const username = req.headers.username;
+  const password = req.headers.password;
+  const foundUser = ADMINS.find(
+    (user) => user.username === username && user.password === password
+  );
+  if(foundUser){
+    res.json({ message: "Logged in successfully" });
+  }else{
+    res.json({ message: "Username or password is incorrect" });
+  }
+}
+
 app.use((req, res, next) => {
   console.log("Middleware Log:", new Date(), req.method, req.url);
   let cond = true;
@@ -35,29 +48,13 @@ app.post("/admin/signup", (req, res) => {
     res.json("Admin created successfully");
   }
   console.log(ADMINS);
-
 });
 
-app.post("/admin/login", (req, res) => {
+app.post("/admin/login", checklogin, (req, res) => {
   // logic to log in admin
-  const username = req.headers.username;
-  const password = req.headers.password;
-  const foundUser = ADMINS.find(
-    (user) => user.username === username && user.password === password
-  );
-
-  if (foundUser) res.json({ message: "Logged in successfully" });
-  else {
-    res.json({ message: "Usern" });
-  }
-
-  if (foundUser) res.json({ message: "Logged in successfully" });
-  else {
-    res.json({ message: "Usern" });
-  }
 });
 
-app.post("/admin/courses", (req, res) => {
+app.post("/admin/courses",checklogin, (req, res) => {
   // logic to create a course
 });
 
