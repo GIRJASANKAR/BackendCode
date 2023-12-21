@@ -85,12 +85,14 @@ app.post("/admin/courses", checklogin, (req, res) => {
     });
   } else {
     courseId++;
+    COURSES.push({...creating_course,courseId});
     res.json({
       ...result,
       message: "Course created successfully",
       courseId: courseId,
     });
   }
+console.log(COURSES);
 });
 
 app.put("/admin/courses/:courseId", (req, res) => {
