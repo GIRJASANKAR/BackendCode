@@ -9,8 +9,11 @@ app.use(express.urlencoded({ extended: false })); // to accept form like data
 app.use(bodyParser.json());
 
 
-const course = z.object({
-  title: z.string(),
+const courseSchema = z.object({
+  title: z.string({
+    required_error: "title is required",
+    invalid_type_error: "title must be a string",
+  }),
   description: z.string(),
   price: z.number(),
   imageLink: z.string(),
@@ -74,6 +77,8 @@ const creating_course={
   imageLink:req.body.imageLink,
   published:req.body.published,
 }
+mySchema.safeParse("tuna"); 
+
    
 });
 
