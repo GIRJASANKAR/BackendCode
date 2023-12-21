@@ -31,10 +31,10 @@ app.post("/admin/signup", (req, res) => {
   if (foundUser) {
     res.json("Admin already exists");
   }else{
-    console.log(ADMINS);
+    ADMINS.push({ username, password });
     res.json("Admin created successfully");
   }
-  ADMINS.push({ username, password });
+  console.log(ADMINS);
 
 });
 
