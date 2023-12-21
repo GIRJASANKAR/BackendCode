@@ -27,7 +27,8 @@ function checklogin(req, res, next) {
   );
   if (foundUser) {
    console.log("user exists")
-    next();
+   res.json({ message: "Logged in sucessfully" });
+    // next();
   } else {
     res.json({ message: "Username or password is incorrect" });
   }
