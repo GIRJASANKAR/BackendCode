@@ -1,5 +1,5 @@
 const express = require("express");
-const z= require("zod");
+const z = require("zod");
 const app = express();
 const port = 3000;
 const bodyParser = require("body-parser");
@@ -7,7 +7,6 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: false })); // to accept form like data
 app.use(bodyParser.json());
-
 
 const courseSchema = z.object({
   title: z.string({
@@ -20,15 +19,15 @@ const courseSchema = z.object({
   published: z.boolean(),
 });
 
-function checklogin(req,res,next){
+function checklogin(req, res, next) {
   const username = req.headers.username;
   const password = req.headers.password;
   const foundUser = ADMINS.find(
     (user) => user.username === username && user.password === password
   );
-  if(foundUser){
+  if (foundUser) {
     next();
-  }else{
+  } else {
     res.json({ message: "Username or password is incorrect" });
   }
 }
@@ -47,7 +46,7 @@ let ADMINS = [];
 let USERS = [];
 let COURSES = [];
 
-let courseId=0;
+let courseId = 0;
 
 // Admin routes
 app.post("/admin/signup", (req, res) => {
@@ -57,7 +56,7 @@ app.post("/admin/signup", (req, res) => {
   const foundUser = ADMINS.find((user) => user.username === username);
   if (foundUser) {
     res.json("Admin already exists");
-  }else{
+  } else {
     ADMINS.push({ username, password });
     res.json("Admin created successfully");
   }
@@ -66,33 +65,32 @@ app.post("/admin/signup", (req, res) => {
 
 app.post("/admin/login", checklogin, (req, res) => {
   // middleware will take this
-  res.json("Logged in successfully")
+  res.json("Logged in successfully");
 });
 
-app.post("/admin/courses",checklogin, (req, res) => {
-// checking admin is login or not with middleware in this route
-const creating_course={
-  title:req.body.title,
-  description:req.body.description,
-  price:req.body.price,
-  imageLink:req.body.imageLink,
-  published:req.body.published,
-}
-let result=courseSchema.safeParse(creating_course)
-if(!result.success){
- res.json({
-  ...result,
-  message:"course is not created",
- })
-}
-else{
-courseId++;
-res.json({
-  ...result,
-  message:"Course created successfully",
-  courseId: courseId
-})
-}  
+app.post("/admin/courses", checklogin, (req, res) => {
+  // checking admin is login or not with middleware in this route
+  const creating_course = {
+    title: req.body.title,
+    description: req.body.description,
+    price: req.body.price,
+    imageLink: req.body.imageLink,
+    published: req.body.published,
+  };
+  let result = courseSchema.safeParse(creating_course);
+  if (!result.success) {
+    res.json({
+      ...result,
+      message: "course is not created",
+    });
+  } else {
+    courseId++;
+    res.json({
+      ...result,
+      message: "Course created successfully",
+      courseId: courseId,
+    });
+  }
 });
 
 app.put("/admin/courses/:courseId", (req, res) => {
