@@ -65,6 +65,7 @@ app.post("/admin/signup", (req, res) => {
 
 app.post("/admin/login", checklogin, (req, res) => {
   // middleware will take this
+  
   res.json("Logged in successfully");
 });
 
