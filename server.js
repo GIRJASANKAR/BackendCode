@@ -5,7 +5,8 @@ const port = 3000;
 const bodyParser = require("body-parser");
 app.use(express.json());
 
-app.use(express.urlencoded({ extended: false })); // to accept form like data
+app.use(express.urlencoded({ extended: false })); 
+// to accept form like data
 app.use(bodyParser.json());
 
 const courseSchema = z.object({
