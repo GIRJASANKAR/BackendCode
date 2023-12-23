@@ -2,12 +2,12 @@ const express = require("express");
 const z = require("zod");
 const app = express();
 const port = 3000;
-const bodyParser = require("body-parser");
-app.use(express.json());
+ const bodyParser = require("body-parser");
+//  app.use(express.json());
 
-app.use(express.urlencoded({ extended: false })); 
+ app.use(express.urlencoded({ extended: false }));
 // to accept form like data
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 
 const courseSchema = z.object({
   title: z.string({
@@ -69,7 +69,7 @@ app.post("/admin/signup", (req, res) => {
   console.log(ADMINS);
 });
 
-app.post('/admin/login', (req, res) => {
+app.post("/admin/login", (req, res) => {
   // middleware will take this
   res.send("hello world!");
 });
