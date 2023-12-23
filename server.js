@@ -71,7 +71,7 @@ app.post("/admin/signup", (req, res) => {
 
 app.post('/admin/login', (req, res) => {
   // middleware will take this
-  res.send("hello world");
+  res.send("hello world!");
 });
 
 app.post("/admin/courses", checklogin, (req, res) => {
