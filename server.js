@@ -6,24 +6,25 @@ const port = 3000;
  app.use(bodyParser.json());
 //  app.use(express.json());
 
- app.use(express.urlencoded({ extended: false }));
+//  app.use(express.urlencoded({ extended: false }));
 // to accept form like data
 
 
-const courseSchema = z.object({
-  title: z.string({
-    required_error: "title is required",
-    invalid_type_error: "title must be a string",
-  }),
-  description: z.string(),
-  price: z.number(),
-  imageLink: z.string(),
-  published: z.boolean(),
-});
+// const courseSchema = z.object({
+//   title: z.string({
+//     required_error: "title is required",
+//     invalid_type_error: "title must be a string",
+//   }),
+//   description: z.string(),
+//   price: z.number(),
+//   imageLink: z.string(),
+//   published: z.boolean(),
+// });
 
 function checklogin(req, res, next) {
   const username = req.headers.username;
   const password = req.headers.password;
+  console.log("username is ",username," password is ",password)
   if(username===undefined || password===undefined){
     res.json({error: "please provide username & password in headers"});
     return;
@@ -77,28 +78,29 @@ app.post("/admin/login",checklogin, (req, res) => {
 
 app.post("/admin/courses", checklogin, (req, res) => {
   // checking admin is login or not with middleware in this route
-  const creating_course = {
-    title: req.body.title,
-    description: req.body.description,
-    price: req.body.price,
-    imageLink: req.body.imageLink,
-    published: req.body.published,
-  };
-  let result = courseSchema.safeParse(creating_course);
-  if (!result.success) {
-    res.json({
-      ...result,
-      message: "course is not created",
-    });
-  } else {
-    courseId++;
-    COURSES.push({ ...creating_course, courseId });
-    res.json({
-      ...result,
-      message: "Course created successfully",
-      courseId: courseId,
-    });
-  }
+  // const creating_course = {
+  //   title: req.body.title,
+  //   description: req.body.description,
+  //   price: req.body.price,
+  //   imageLink: req.body.imageLink,
+  //   published: req.body.published,
+  // };
+  // let result = courseSchema.safeParse(creating_course);
+  // if (!result.success) {
+  //   res.json({
+  //     ...result,
+  //     message: "course is not created",
+  //   });
+  // } else {
+  //   courseId++;
+  //   COURSES.push({ ...creating_course, courseId });
+  //   res.json({
+  //     ...result,
+  //     message: "Course created successfully",
+  //     courseId: courseId,
+  //   });
+  // }
+  console.log("in the courses route");
   console.log(COURSES);
 });
 
