@@ -53,7 +53,6 @@ app.use((req, res, next) => {
 let ADMINS = [];
 let USERS = [];
 let COURSES = [];
-
 let courseId = 0;
 
 // Admin routes
